@@ -5,7 +5,19 @@
     background: linear-gradient(90deg, rgb(99, 99, 240) 0%, rgb(41, 5, 88) 100%);
 }
 
-h1 {
+.titleTextStyle {
     color: white;
+    font-size: 40px;
+}
+
+.searchFlexContainer {
+    display: flex;
+    width: 25%;
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+.searchTitleStyle {
+    margin-left: 40px;
     font-size: 50px;
 }

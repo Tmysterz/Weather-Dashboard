@@ -1,0 +1,11 @@
+.titleFlexContainer {
+    display: flex;
+    justify-content: center;
+    margin: 2%;
+    background: linear-gradient(90deg, rgb(99, 99, 240) 0%, rgb(41, 5, 88) 100%);
+}
+
+h1 {
+    color: white;
+    font-size: 50px;
+}

@@ -29,11 +29,13 @@ function searchWeather () {
         }).then(function(data){
             console.log(data)
             var {lat,lon} = data[0]
-            console.log(lat,lon);
             getForecast(lat,lon);
-        })
+        });
 
-    // var weatherApiURL = `api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`
+    for (var index = 0; index < 5; index++) {
+        createForecastBox();
+    }
+
 
 }
 
@@ -62,4 +64,41 @@ function renderForecastData () {
     
 }
 
-// api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+function createForecastBox () {
+    var newBox = document.createElement("div");
+
+    newBox.style.width = "150px";
+    newBox.style.height = "200px";
+    newBox.style.backgroundColor = "lightblue";
+    newBox.style.border = "1px solid blue";
+    newBox.style.display = "inline-block";
+    newBox.style.marginLeft = "25px";
+    newBox.style.float = "right";
+    
+    
+    newBox.style.position = "relative";
+    newBox.style.right = "300px";
+    newBox.style.top = "250px";
+
+    var line1 = document.createTextNode("future date");
+    var line2 = document.createTextNode("icon");
+    var line3 = document.createTextNode("Temp: ");
+    var line4 = document.createTextNode("Wind: ");
+    var line5 = document.createTextNode("Humidity: ");
+
+    newBox.appendChild(line1);
+    newBox.appendChild(document.createElement("br"));
+    newBox.appendChild(line2);
+    newBox.appendChild(document.createElement("br"));
+    newBox.appendChild(line3);
+    newBox.appendChild(document.createElement("br"));
+    newBox.appendChild(line4);
+    newBox.appendChild(document.createElement("br"));
+    newBox.appendChild(line5);
+
+    
+
+    document.body.appendChild(newBox);
+}
+
+// document.getElementById("searchButton").addEventListener("click", createForecastBox);

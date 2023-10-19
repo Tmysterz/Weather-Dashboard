@@ -100,3 +100,13 @@
     border-width: 1px;
     border-radius: 10px;
 }
+
+#currentWeatherHeader {
+    display: flex;
+    align-items: center;
+}
+
+#date {
+    margin-bottom: 0px;
+    margin-left: 15px;
+}

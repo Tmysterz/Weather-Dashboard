@@ -24,6 +24,7 @@
     display: flex;
     margin-left: 40px;
     font-size: 50px;
+    width: 30%;
 }
 
 .selectedFlexContainer {
@@ -38,6 +39,64 @@
     top: 16%;
 }
 
-.cityInfoFormat {
-    
+.futureForecastContainer {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 50%;
+    height: 30%;
+    left: 40%;
+    top: 57%;
+}
+
+.futureForecastTitle {
+    display: flex;
+    position: absolute;
+    left: 40%;
+    top: 450px;
+}
+
+.dayOneForecast {
+    background-color: rgb(73, 45, 45);
+    color: white;
+    width: 20%;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+}
+
+.dayTwoForecast {
+    background-color: rgb(73, 45, 45);
+    color: white;
+    width: 20%;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+.dayThreeForecast {
+    background-color: rgb(73, 45, 45);
+    color: white;
+    width: 20%;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+.dayFourForecast {
+    background-color: rgb(73, 45, 45);
+    color: white;
+    width: 20%;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+}
+
+.dayFiveForecast {
+    background-color: rgb(73, 45, 45);
+    color: white;
+    width: 20%;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
 }

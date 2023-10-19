@@ -36,6 +36,8 @@ function searchWeather () {
         createForecastBox();
     }
 
+    displayDate();
+
 
 }
 
@@ -74,10 +76,8 @@ function createForecastBox () {
     newBox.style.display = "inline-block";
     newBox.style.marginLeft = "25px";
     newBox.style.float = "right";
-    
-    
     newBox.style.position = "relative";
-    newBox.style.right = "300px";
+    newBox.style.right = "250px";
     newBox.style.top = "250px";
 
     var line1 = document.createTextNode("future date");
@@ -96,9 +96,12 @@ function createForecastBox () {
     newBox.appendChild(document.createElement("br"));
     newBox.appendChild(line5);
 
-    
-
     document.body.appendChild(newBox);
 }
 
-// document.getElementById("searchButton").addEventListener("click", createForecastBox);
+var dateDisplayEl = document.getElementById("date")
+
+function displayDate() {
+    var currentDate = dayjs().format('MM/DD/YYYY')
+    dateDisplayEl.textContent = currentDate;
+}

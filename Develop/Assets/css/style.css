@@ -39,7 +39,26 @@
     top: 16%;
 }
 
-.futureForecastContainer {
+.futureForecastTitle {
+    display: flex;
+    position: absolute;
+    left: 40%;
+    top: 450px;
+}
+
+#currentWeatherHeader {
+    display: flex;
+    align-items: center;
+}
+
+#date {
+    margin-bottom: 0px;
+    margin-left: 15px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* .futureForecastContainer {
     display: flex;
     justify-content: space-between;
     position: absolute;
@@ -47,13 +66,6 @@
     height: 30%;
     left: 40%;
     top: 57%;
-}
-
-.futureForecastTitle {
-    display: flex;
-    position: absolute;
-    left: 40%;
-    top: 450px;
 }
 
 .dayOneForecast {
@@ -99,14 +111,4 @@
     border-style: solid;
     border-width: 1px;
     border-radius: 10px;
-}
-
-#currentWeatherHeader {
-    display: flex;
-    align-items: center;
-}
-
-#date {
-    margin-bottom: 0px;
-    margin-left: 15px;
-}
+} */

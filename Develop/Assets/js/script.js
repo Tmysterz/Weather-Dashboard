@@ -27,11 +27,17 @@ function searchWeather () {
         .then(function (response){
             return response.json();
         }).then(function(data){
+            // weather api
             console.log(data)
+
             var {lat,lon} = data[0]
+
+            // lat and lon of city searched
+            console.log(lat,lon)
             getForecast(lat,lon);
         });
 
+    // creates boxes after the user searches
     for (var index = 0; index < 5; index++) {
         createForecastBox();
     }
@@ -59,12 +65,11 @@ function renderCurrentData (data) {
     document.querySelector("#temp").textContent = data.list[0].main.temp;
     document.querySelector("#wind").textContent = data.list[0].wind.speed;
     document.querySelector("#humidity").textContent = data.list[0].main.humidity;
-
 }
 
-function renderForecastData () {
+// function renderForecastData () {
     
-}
+// }
 
 function createForecastBox () {
     var newBox = document.createElement("div");

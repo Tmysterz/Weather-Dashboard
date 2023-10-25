@@ -27,6 +27,13 @@
     width: 30%;
 }
 
+.recentSearchTitle {
+    display: flex;
+    margin-left: 40px;
+    margin-top: 40px;
+    width: 30%;
+}
+
 .selectedFlexContainer {
     display: inline;
     position: absolute;
@@ -46,6 +53,7 @@
     top: 450px;
 }
 
+
 #currentWeatherHeader {
     display: flex;
     align-items: center;
@@ -57,6 +65,7 @@
     font-size: 25px;
     font-weight: bold;
 }
+
 
 /* .futureForecastContainer {
     display: flex;

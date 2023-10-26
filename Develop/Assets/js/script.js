@@ -37,7 +37,7 @@ function searchWeather () {
 
 function renderForecastData (data) {
 
-    for(var index=0; index < data.list.length; index += 8 ) {
+    for(var index=0; index < data.list[index].length; index += 8 ) {
         var forecastBox = document.createElement("div");
         var dateEl = document.createElement("p");
         var iconEl = document.createElement("img");

@@ -17,15 +17,15 @@
     <div class="searchFlexContainer">
         <div class="input-group">
             <input id="cityInput" type="search" class="form-control rounded" placeholder="Enter City Name" aria-label="Search" aria-describedby="search-addon" />
-            <button onclick="searchWeather()" id="searchButton" type="button" class="btn btn-outline-primary">search</button>
+            <button id="searchButton" type="button" class="btn btn-outline-primary">search</button>
         </div>
     </div>
 
     <div class= "selectedFlexContainer">
         <div>
             <div id="currentWeatherHeader">
-                <h2 id="currentDay">City</h2> 
-                <p id="date">Date</p>
+                <h2 id="currentDay">Click search to find a city!</h2> 
+                <p id="date"></p>
                 <img id="icon"/>
             </div>
             <div>Temp: <span id="temp">00.00</span>°F</div>
@@ -36,7 +36,7 @@
 
     <h2 class="futureForecastTitle">5-Day Forecast: </h2>
 
-    <div id="futureForecastContainer" class="d-flex"></div>
+    <div id="futureForecastContainer" class="d-flex futureForecastContainer"></div>
 
     <h2 class="recentSearchTitle">Recent Searches: </h2>
 

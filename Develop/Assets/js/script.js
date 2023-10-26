@@ -1,9 +1,6 @@
 var apiKey = '01a44a475a8c136ae41db9d0428f671a'
 
-function searchWeather () {
-    var cityInput = document.getElementById('cityInput');
-    var cityName = cityInput.value;
-    
+function searchWeather (cityName) {
     if(!cityName) {
         alert("Please enter a city name");
         return;
@@ -25,19 +22,16 @@ function searchWeather () {
             getForecast(lat,lon);
         });
 
-    // creates boxes after the user searches
-    // for (var index = 0; index < 5; index++) {
-    //     createForecastBox();
-    // }
-
     saveSearchValue()
 
     displayDate();
 }
 
 function renderForecastData (data) {
+    document.querySelector("#futureForecastContainer").innerHTML = "";
 
-    for(var index=0; index < data.list[index].length; index += 8 ) {
+    for(var index=2; index < data.list.length; index += 8 ) {
+
         var forecastBox = document.createElement("div");
         var dateEl = document.createElement("p");
         var iconEl = document.createElement("img");
@@ -46,7 +40,7 @@ function renderForecastData (data) {
         var humidityEl = document.createElement("p");
 
 
-        dateEl.textContent = dayjs.unix(data.list.dt).format("MM/DD/YYYY");
+        dateEl.textContent = dayjs.unix(data.list[index].dt).format("MM/DD/YYYY");
         iconEl.setAttribute("src", `https://openweathermap.org/img/w/${data.list[index].weather[0].icon}.png` )
         tempEl.textContent = data.list[index].main.temp;
         windEl.textContent = data.list[index].wind.speed;
@@ -60,8 +54,6 @@ function renderForecastData (data) {
     } 
 }
 
-// api cycles through 5 days every 3 hours creating a 40 item array.
-// need to find out how to specifically pick only the next 5 days 
 function getForecast(lat,lon){
     var forecastApiURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`
 
@@ -83,39 +75,6 @@ function renderCurrentData (data) {
     document.querySelector("#humidity").textContent = data.list[0].main.humidity;
 }
 
-// need to add IDs to each line so that i can link it to live api 
-// function createForecastBox () {
-//     var newBox = document.createElement("div");
-
-//     newBox.style.width = "175px";
-//     newBox.style.height = "300px";
-//     newBox.style.backgroundColor = "lightblue";
-//     newBox.style.border = "1px solid blue";
-//     newBox.style.display = "inline-block";
-//     newBox.style.marginLeft = "25px";
-//     newBox.style.float = "right";
-//     newBox.style.position = "relative";
-//     newBox.style.right = "150px";
-//     newBox.style.top = "175px";
-
-//     var line1 = document.createTextNode("future date");
-//     var line2 = document.createTextNode("icon");
-//     var line3 = document.createTextNode("Temp: ");
-//     var line4 = document.createTextNode("Wind: ");
-//     var line5 = document.createTextNode("Humidity: ");
-
-//     newBox.appendChild(line1);
-//     newBox.appendChild(document.createElement("br"));
-//     newBox.appendChild(line2);
-//     newBox.appendChild(document.createElement("br"));
-//     newBox.appendChild(line3);
-//     newBox.appendChild(document.createElement("br"));
-//     newBox.appendChild(line4);
-//     newBox.appendChild(document.createElement("br"));
-//     newBox.appendChild(line5);
-
-//     document.body.appendChild(newBox);
-// }
 function saveSearchValue() {
     const inputValue = document.getElementById('cityInput').value;
     if (inputValue) {
@@ -147,6 +106,11 @@ function displayRecentSearches() {
     }
 }
 
+function recentSearchClick (event) {
+    searchWeather(event.target.textContent)
+
+}
+
 displayRecentSearches();
 
 
@@ -156,3 +120,11 @@ function displayDate() {
     var currentDate = dayjs().format('MM/DD/YYYY')
     dateDisplayEl.textContent = currentDate;
 }
+
+document.querySelector("#searchButton").addEventListener('click',function () {
+    var cityInput = document.getElementById('cityInput');
+    var cityName = cityInput.value;
+    searchWeather(cityName)
+})
+
+document.querySelector("#recent-search-list").addEventListener('click', recentSearchClick)

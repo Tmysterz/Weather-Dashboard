@@ -1,16 +1,4 @@
-// var currentCityDisplay = $("#selectedCity");
-// var currentDateDisplay = document.querySelectorAll("#currentDate");
-
-// function displayCurrentDate () {
-//     var currentDate = dayjs().format('M,D,YYYY');
-
-//     currentDateDisplay.text(currentDate);
-// }
-
-// displayCurrentDate();
-
 var apiKey = '01a44a475a8c136ae41db9d0428f671a'
-
 
 function searchWeather () {
     var cityInput = document.getElementById('cityInput');
@@ -42,11 +30,13 @@ function searchWeather () {
         createForecastBox();
     }
 
+    saveSearchValue()
+
     displayDate();
-
-
 }
 
+// api cycles through 5 days every 3 hours creating a 40 item array.
+// need to find out how to specifically pick only the next 5 days 
 function getForecast(lat,lon){
     var forecastApiURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`
 
@@ -67,23 +57,20 @@ function renderCurrentData (data) {
     document.querySelector("#humidity").textContent = data.list[0].main.humidity;
 }
 
-// function renderForecastData () {
-    
-// }
-
+// need to add IDs to each line so that i can link it to live api 
 function createForecastBox () {
     var newBox = document.createElement("div");
 
-    newBox.style.width = "150px";
-    newBox.style.height = "200px";
+    newBox.style.width = "175px";
+    newBox.style.height = "300px";
     newBox.style.backgroundColor = "lightblue";
     newBox.style.border = "1px solid blue";
     newBox.style.display = "inline-block";
     newBox.style.marginLeft = "25px";
     newBox.style.float = "right";
     newBox.style.position = "relative";
-    newBox.style.right = "250px";
-    newBox.style.top = "250px";
+    newBox.style.right = "150px";
+    newBox.style.top = "175px";
 
     var line1 = document.createTextNode("future date");
     var line2 = document.createTextNode("icon");
@@ -103,6 +90,39 @@ function createForecastBox () {
 
     document.body.appendChild(newBox);
 }
+function saveSearchValue() {
+    const inputValue = document.getElementById('cityInput').value;
+    if (inputValue) {
+      if (typeof Storage !== 'undefined') {
+        let recentSearches = JSON.parse(localStorage.getItem('recentWeatherSearches')) || [];
+        recentSearches.push(inputValue);
+        localStorage.setItem('recentWeatherSearches', JSON.stringify(recentSearches));
+      } else {
+        alert('Local storage is not available in your browser.');
+      }
+    }
+}
+
+function displayRecentSearches() {
+    const recentSearches = JSON.parse(localStorage.getItem('recentWeatherSearches')) || [];
+    const recentSearchList = document.getElementById('recent-search-list');
+  
+    recentSearchList.innerHTML = '';
+  
+    for (const searchValue of recentSearches) {
+      const listItem = document.createElement('button');
+      listItem.style.width = "400px";
+      
+      listItem.textContent = searchValue;
+      listItem.addEventListener('click', function () {
+  
+      });
+      recentSearchList.appendChild(listItem);
+    }
+}
+
+displayRecentSearches();
+
 
 var dateDisplayEl = document.getElementById("date")
 

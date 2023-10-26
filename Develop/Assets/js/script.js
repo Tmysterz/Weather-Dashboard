@@ -26,13 +26,38 @@ function searchWeather () {
         });
 
     // creates boxes after the user searches
-    for (var index = 0; index < 5; index++) {
-        createForecastBox();
-    }
+    // for (var index = 0; index < 5; index++) {
+    //     createForecastBox();
+    // }
 
     saveSearchValue()
 
     displayDate();
+}
+
+function renderForecastData (data) {
+
+    for(var index=0; index < data.list.length; index += 8 ) {
+        var forecastBox = document.createElement("div");
+        var dateEl = document.createElement("p");
+        var iconEl = document.createElement("img");
+        var tempEl = document.createElement("p");
+        var windEl = document.createElement("p");
+        var humidityEl = document.createElement("p");
+
+
+        dateEl.textContent = dayjs.unix(data.list.dt).format("MM/DD/YYYY");
+        iconEl.setAttribute("src", `https://openweathermap.org/img/w/${data.list[index].weather[0].icon}.png` )
+        tempEl.textContent = data.list[index].main.temp;
+        windEl.textContent = data.list[index].wind.speed;
+        humidityEl.textContent = data.list[index].main.humidity;
+
+
+        forecastBox.append(dateEl,iconEl,tempEl,windEl,humidityEl)
+
+        document.querySelector("#futureForecastContainer").append(forecastBox)
+
+    } 
 }
 
 // api cycles through 5 days every 3 hours creating a 40 item array.
@@ -46,6 +71,7 @@ function getForecast(lat,lon){
     }).then (function(data){
         console.log(data)
         renderCurrentData(data);
+        renderForecastData(data);
     })
 }
 
@@ -58,38 +84,38 @@ function renderCurrentData (data) {
 }
 
 // need to add IDs to each line so that i can link it to live api 
-function createForecastBox () {
-    var newBox = document.createElement("div");
+// function createForecastBox () {
+//     var newBox = document.createElement("div");
 
-    newBox.style.width = "175px";
-    newBox.style.height = "300px";
-    newBox.style.backgroundColor = "lightblue";
-    newBox.style.border = "1px solid blue";
-    newBox.style.display = "inline-block";
-    newBox.style.marginLeft = "25px";
-    newBox.style.float = "right";
-    newBox.style.position = "relative";
-    newBox.style.right = "150px";
-    newBox.style.top = "175px";
+//     newBox.style.width = "175px";
+//     newBox.style.height = "300px";
+//     newBox.style.backgroundColor = "lightblue";
+//     newBox.style.border = "1px solid blue";
+//     newBox.style.display = "inline-block";
+//     newBox.style.marginLeft = "25px";
+//     newBox.style.float = "right";
+//     newBox.style.position = "relative";
+//     newBox.style.right = "150px";
+//     newBox.style.top = "175px";
 
-    var line1 = document.createTextNode("future date");
-    var line2 = document.createTextNode("icon");
-    var line3 = document.createTextNode("Temp: ");
-    var line4 = document.createTextNode("Wind: ");
-    var line5 = document.createTextNode("Humidity: ");
+//     var line1 = document.createTextNode("future date");
+//     var line2 = document.createTextNode("icon");
+//     var line3 = document.createTextNode("Temp: ");
+//     var line4 = document.createTextNode("Wind: ");
+//     var line5 = document.createTextNode("Humidity: ");
 
-    newBox.appendChild(line1);
-    newBox.appendChild(document.createElement("br"));
-    newBox.appendChild(line2);
-    newBox.appendChild(document.createElement("br"));
-    newBox.appendChild(line3);
-    newBox.appendChild(document.createElement("br"));
-    newBox.appendChild(line4);
-    newBox.appendChild(document.createElement("br"));
-    newBox.appendChild(line5);
+//     newBox.appendChild(line1);
+//     newBox.appendChild(document.createElement("br"));
+//     newBox.appendChild(line2);
+//     newBox.appendChild(document.createElement("br"));
+//     newBox.appendChild(line3);
+//     newBox.appendChild(document.createElement("br"));
+//     newBox.appendChild(line4);
+//     newBox.appendChild(document.createElement("br"));
+//     newBox.appendChild(line5);
 
-    document.body.appendChild(newBox);
-}
+//     document.body.appendChild(newBox);
+// }
 function saveSearchValue() {
     const inputValue = document.getElementById('cityInput').value;
     if (inputValue) {

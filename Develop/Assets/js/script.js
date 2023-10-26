@@ -42,10 +42,9 @@ function renderForecastData (data) {
 
         dateEl.textContent = dayjs.unix(data.list[index].dt).format("MM/DD/YYYY");
         iconEl.setAttribute("src", `https://openweathermap.org/img/w/${data.list[index].weather[0].icon}.png` )
-        tempEl.textContent = data.list[index].main.temp;
-        windEl.textContent = data.list[index].wind.speed;
-        humidityEl.textContent = data.list[index].main.humidity;
-
+        tempEl.textContent = "Temp: " + data.list[index].main.temp;
+        windEl.textContent = "Wind: " + data.list[index].wind.speed;
+        humidityEl.textContent = "Humidity: " + data.list[index].main.humidity;
 
         forecastBox.append(dateEl,iconEl,tempEl,windEl,humidityEl)
 
@@ -82,6 +81,7 @@ function saveSearchValue() {
         let recentSearches = JSON.parse(localStorage.getItem('recentWeatherSearches')) || [];
         recentSearches.push(inputValue);
         localStorage.setItem('recentWeatherSearches', JSON.stringify(recentSearches));
+        displayRecentSearches();
       } else {
         alert('Local storage is not available in your browser.');
       }

@@ -6,7 +6,7 @@ function searchWeather (cityName) {
         return;
     }
 
-    var weatherApiURL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`
+    var weatherApiURL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiKey}`
 
     fetch(weatherApiURL)
         .then(function (response){
@@ -54,7 +54,7 @@ function renderForecastData (data) {
 }
 
 function getForecast(lat,lon){
-    var forecastApiURL = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`
+    var forecastApiURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`
 
     fetch(forecastApiURL)
     .then(function(response){

@@ -1,5 +1,7 @@
 var apiKey = '01a44a475a8c136ae41db9d0428f671a'
 
+localStorage.clear();
+
 function searchWeather (cityName) {
     if(!cityName) {
         alert("Please enter a city name");
